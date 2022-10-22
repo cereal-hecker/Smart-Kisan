@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
+
+body{
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  padding: 2% 5%;
+}
+
+/* Navigation Bar */
+
+.navbar{
+  padding-bottom: 2rem;
+}
+.navbar-brand{
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.5rem;
+  color: #064420;
+}
+.nav-item{
+  padding: 0 18px;
+}
+.nav-link{
+  font-weight: 400;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+a:link { text-decoration: none; }
+
+/* Download Buttons */
+
+.download-button{
+  margin: 5% 3% 5% 0;
+}
+
+/* Dashboard */
+
+.title{
+  font-weight: 800;
+  font-family: 'Montserrat', sans-serif;
+  padding-top: 0;
+}
+.rainfall-card{
+  background-color: #C6EBC9;
+}
+.temperature-card{
+  background-color: #C1AC95;
+}
+.humidity-card{
+  background-color: #E4EFE7;
+}
+.hello{
+  font-size: 12px;
+  font-weight: 300;
+}
+
+/* Home */
+.big-heading{
+  font-size: 5rem;
+  font-weight: 700;
+  padding-top: 17%;
+}
+.phone-number{
+  padding-top: 7%;
+  padding: 7% 20% 7%;
+}
+.title-image{
+  height: 100%;
+}

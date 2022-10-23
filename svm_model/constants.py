@@ -2,6 +2,9 @@ farming_style = {'jute': 'classic style farming','pomegranate' : 'square method'
 
 MESSAGE_MONTH = "Hey Smart Kisan! Here are some tips for you: We recommend you to grow crop_recommendation the next season! Try to use the following organic fertilizers for better results: Vermicompost Fertilizer for all plants. Confirm that you bought it by typing a Yes, and we will send you daily updates of schedules on how to use it alongside your current fertilizers so as to mazimize the yield! We are working towards connecting you to the sellers directly, expect an update soon! Season is round the corner, for better yield, try farming_style farming. For weekly tips, reply with (organic tips). Organic Tip of the Day: random.choice(organic_tip) farming"
 
+HUMIDITY = 71.48177921778648
+
+RAINFALL = 103.4636554157683
 
 NITROGEN = [ 90,  85,  60,  74,  78,  69,  94,  89,  68,  91,  93,  77,  88,
         76,  67,  83,  98,  66,  97,  84,  73,  92,  95e,  99,  63,  62,

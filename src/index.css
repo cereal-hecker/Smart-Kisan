@@ -16,7 +16,7 @@ body{
 .navbar-brand{
   font-family: 'Poppins', sans-serif;
   font-size: 2.5rem;
-  color: #064420;
+  color: #1b5d41;
 }
 .nav-item{
   padding: 0 18px;
@@ -26,8 +26,9 @@ body{
   font-size: 1.2rem;
   text-decoration: none;
 }
-
-a:link { text-decoration: none; }
+a:link{
+  text-decoration: none;
+}
 
 /* Download Buttons */
 
@@ -52,8 +53,33 @@ a:link { text-decoration: none; }
   background-color: #E4EFE7;
 }
 .hello{
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 300;
+}
+.weather-today{
+  background-color: #ffefaa;
+}
+.fertilizer-desc{
+  font-size: 15px;
+  font-weight: 350;
+}
+.fertilizer-card{
+  background-color: #F2EDD7;
+}
+.crop-card{
+  background-color: #cceac4;
+}
+.nitrogen{
+  background-color: #cceac4;
+}
+.phosphorus{
+  background-color: #C1AC95;
+}
+.potassium{
+  background-color: #F2EDD7;
+}
+.ph-value{
+  background-color: #C6EBC9;
 }
 
 /* Home */
@@ -67,5 +93,8 @@ a:link { text-decoration: none; }
   padding: 7% 20% 7%;
 }
 .title-image{
-  height: 100%;
+  width: 550px;
+}
+NavLink:hover{
+  text-decoration: underline;
 }

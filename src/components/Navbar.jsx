@@ -4,18 +4,18 @@ export default function Navbar() {
 
     return (
       <div className="container-fluid">
-        <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="">smartKisan</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <nav className="navbar navbar-expand-lg navbar-light">
+        <a className="navbar-brand" href="">smartKisan</a>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto">
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-            <NavLink to="/"><a className="nav-link">Home</a></NavLink>
+            <NavLink to="/" className="nav-link">Home</NavLink>
             </li>
             <li className="nav-item">
-            <NavLink to="/dashboard"><a className="nav-link" href="/dashboard">Dashboard</a></NavLink>
+            <NavLink to="/dashboard" className="nav-link">Dashboard</NavLink>
             </li>
           </ul>
         </div>

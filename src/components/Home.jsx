@@ -1,21 +1,49 @@
-export default function Home() {
+import { useEffect, useState } from "react";
 
-    return (
-        <div>
-        <div className="container-fluid row m-0">
+export default function Home() {
+  const [number, setNumber] = useState("");
+  const handleButtonClick = async () => {
+    const res = await fetch("https://ipapi.co/json");
+    const data = await res.json();
+    const { latitude, longitude } = data;
+
+    console.log({ latitude, longitude, number });
+  };
+
+  return (
+    <div>
+      <div className="container-fluid row m-0">
         <div className="col-lg-6 p-6 title text-center">
-            <h1 className="big-heading text-center">Go Organic today!</h1>
-            <div class="input-group rounded phone-number text-center">
-                <input type="search" class="form-control rounded" placeholder="Enter phone number" aria-label="Search" aria-describedby="search-addon" />
-                <span class="input-group-text border-0 p-0 m-0 rounded submit-button mx-3" id="search-addon">
-                <button type="submit" class="border-0 btn btn-md btn-outline-dark">Submit</button>
-                </span>
-            </div>
+          <h1 className="big-heading text-center">Go Organic today!</h1>
+          <div className="input-group rounded phone-number text-center">
+            <input
+              type="text"
+              className="form-control rounded"
+              placeholder="Enter phone number"
+              value={number}
+              onChange={(e) =>
+                e.target.value.length <= 10 && setNumber(e.target.value)
+              }
+              aria-label="Search"
+              aria-describedby="search-addon"
+            />
+            <span
+              className="input-group-text border-0 p-0 m-0 rounded submit-button mx-3"
+              id="search-addon"
+            >
+              <button
+                onClick={handleButtonClick}
+                className="border-0 btn btn-md btn-outline-dark"
+              >
+                Submit
+              </button>
+            </span>
+          </div>
         </div>
         <div className="col-lg-6 title-image">
-        <img src="src\assets\images\Farmer-bro.svg"></img>
+          <img src="src\assets\images\Farmer-bro.svg"></img>
         </div>
       </div>
-        </div>
-    )
-  }
+    </div>
+  );
+}

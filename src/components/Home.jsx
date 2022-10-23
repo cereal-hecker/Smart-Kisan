@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 
-export default function Home() {
+export default function Home({ setData }) {
   const [number, setNumber] = useState("");
   const handleButtonClick = async () => {
-    const res = await fetch("https://ipapi.co/json");
+    const res = await fetch("http://localhost:5000/predict?number=9310389530");
     const data = await res.json();
-    const { latitude, longitude } = data;
+    // k, n, p, Tempr, crop_pred, ph, tip, rainfall, hum
 
-    console.log({ latitude, longitude, number });
+    setData(data);
   };
-
   return (
     <div>
       <div className="container-fluid row m-0">

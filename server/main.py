@@ -1,7 +1,7 @@
 from datetime import datetime
 import sqlite3
 from flask import Flask, request, make_response
-import svm_model.model as svm_model
+from svm_model import model as svm_model
 
 app = Flask(__name__)
 
@@ -45,24 +45,23 @@ def predict():
     number = request.args.get("number")
     month = datetime.now().month
     month_prediction = svm_model.predict(monthToPredict(month))
-    return {number, month, month_prediction}
-    # if number and len(number) == 10:
-    #     try:
-    #         cursor.execute(
-    #             f"INSERT INTO FARMER (phone_number, crop_name, month) values ({number}, {month} ,{month})"
-    #         )
-    #         db.commit()
-    #         return {"message": "data updated successfully"}
-    #     except Exception:
-    #         return make_response({"message": "parameters not fullfilled"}, 400)
-    # else:
-    #     return make_response({"message": "parameters not fullfilled"}, 400)
+    if number and len(number) == 10:
+        try:
+            cursor.execute(
+                f"INSERT INTO FARMER (phone_number, crop_name, month) values ({number}, {month_prediction} ,{month})"
+            )
+            db.commit()
+            return {"message": "data updated successfully"}
+        except Exception:
+            return make_response({"message": "parameters not fullfilled"}, 400)
+    else:
+        return make_response({"message": "parameters not fullfilled"}, 400)
 
 
 @app.route("/numbers")
 def num():
     cursor.execute("SELECT * from FARMER")
-    return cursor.fetchall()
+    return {"data": cursor.fetchall()}
 
 
 if __name__ == "__main__":

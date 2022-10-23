@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Home({ setData }) {
   const [number, setNumber] = useState("");
+  const navigate = useNavigate();
   const handleButtonClick = async () => {
     const res = await fetch("http://localhost:5000/predict?number=9310389530");
     const data = await res.json();
     // k, n, p, Tempr, crop_pred, ph, tip, rainfall, hum
 
     setData(data);
+    navigate("/dashboard");
   };
   return (
     <div>

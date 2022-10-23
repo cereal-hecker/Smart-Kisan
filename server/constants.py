@@ -4,7 +4,7 @@ MESSAGE_MONTH = "Hey Smart Kisan! Here are some tips for you: We recommend you t
 
 AVERAGE_WEATHER = {"winter": {"chennai" : 24.5, "mumbai" : 24.5, "guwahati" : 17.5, "delhi" : 14.5}, "spring" : {"chennai" : 31, "mumbai" : 28.5, "guwahati" : 25.5, "delhi" : 29}, "summer" : {"chennai" : 33, "mumbai" : 32, "guwahati" : 31, "delhi" : 32}, "monsoon" : {"chennai" : 31, "mumbai" : 29, "guwahati" : 27, "delhi" : 29}}
 
-ORGANIC_TIP = ["Tip1", "Tip2","Tip2"]
+ORGANIC_TIP = ["Protecting the long term fertility of soils by maintaining organic matter levels, encouraging soil biological activity, and careful mechanical intervention.", "Providing crop nutrients indirectly using relatively insoluble nutrient sources which are made available to the plant by the action of soil micro-organisms.","Nitrogen self-sufficiency through the use of legumes and biological nitrogen fixation, as well as effective recycling of organic materials including crop residues and livestock manures."]
 
 HUMIDITY = 71.48177921778648
 

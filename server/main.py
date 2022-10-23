@@ -3,8 +3,12 @@ import sqlite3
 from flask import Flask, request, make_response
 from svm_model import model as svm_model
 import sms
+import constants
+import random
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 db = sqlite3.connect("sql.db", check_same_thread=False)
 cursor = db.cursor()
@@ -34,10 +38,10 @@ def sms_query(number):
     saved_month = f"select month from FARMER where phone_number = {number}"
     cursor.execute(saved_month)
 
-    saved_month = cursor.fetchall()[0]
+    saved_month = cursor.fetchall()[0][0]
 
     try:
-        if len(saved_month) and curr_month == saved_month[0]:
+        if curr_month == saved_month:
             sms.message_daily(monthToPredict(saved_month), number)
         elif curr_month != saved_month:
             sms.message_month(number)
@@ -65,19 +69,19 @@ def hello_world():
 def predict():
     number = request.args.get("number")
     month = datetime.now().month
-    month_prediction = svm_model.predict(monthToPredict(month))
+    crop_prediction = svm_model.predict(monthToPredict(month))
     if number and len(number) == 10:
-        try:
-            cursor.execute(
-                f"INSERT INTO FARMER (phone_number, crop_name, month) values ({number}, '{month_prediction}' ,{month})"
-            )
-            db.commit()
-
-            return {"message": "data updated successfully"}
-        except Exception as e:
-            pass
         send_sms = sms_query(int(number))
         print(send_sms)
+        try:
+            cursor.execute(
+                f"INSERT INTO FARMER (phone_number, crop_name, month) values ({number}, '{crop_prediction}' ,{month})"
+            )
+            db.commit()
+        except Exception:
+            pass
+
+        return {"message": "data updated successfully", "N" : random.choice(constants.NITROGEN), "P": random.choice(constants.PHOSPHORUS), "K" : random.choice(constants.POTASSIUM), "tip" : random.choice(constants.ORGANIC_TIP), "crop_pred" : crop_prediction, "Tempr" : constants.AVERAGE_WEATHER[monthToPredict(month)]["delhi"], "ph" : random.choice(constants.PH), "rainfall": constants.RAINFALL , "hum": constants.HUMIDITY}
     else:
         return make_response({"message": "parameters not fullfilled"}, 400)
 
@@ -86,6 +90,7 @@ def predict():
 def num():
     cursor.execute("SELECT * from FARMER")
     return {"data": cursor.fetchall()}
+
 
 
 if __name__ == "__main__":

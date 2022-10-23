@@ -5,7 +5,7 @@ export default function Dashboard({data}) {
       <h1 className="title my-4 mt-0">Kisan</h1>
       <div className="row p-0">
         <div className="weather-today col-md-1 py-2 rounded m-3 text-center">
-          <i class="fa-solid fa-sun"></i>
+          <i className="fa-solid fa-sun"></i>
           <p className="fs-6">Weather</p>
         </div>
 
@@ -14,21 +14,21 @@ export default function Dashboard({data}) {
             Rainfall
             <i className="fa-solid fa-cloud-rain text-xl"></i>
           </h3>
-          <div className="fs-1">{data["rainfall"]}</div>
+          <div className="fs-1">{data["rainfall"].toFixed(1)} cm</div>
         </div>
         <div className="temperature-card col-md py-2 rounded m-3">
           <h3 className="d-flex justify-content-between w-100">
             Temperature
             <i className="fa-solid fa-temperature-three-quarters"></i>
           </h3>
-          <div className="fs-1">{data["Tempr"]}</div>
+          <div className="fs-1">{data["Tempr"].toFixed(1)} &deg;C</div>
         </div>
         <div className="humidity-card col-md py-2 rounded m-3">
           <h3 className="d-flex justify-content-between w-100">
             Humidity
             <i className="fa-solid fa-droplet"></i>
           </h3>
-          <div className="fs-1">{data["hum"]}</div>
+          <div className="fs-1">{data["hum"].toFixed(1)} %</div>
         </div>
         <div className="row m-0 p-0">
           <div className="col-md-6">
@@ -66,7 +66,7 @@ export default function Dashboard({data}) {
                     <h3 className="d-flex justify-content-between w-100">
                       Next Season Crop
                     </h3>
-                    <div className="fs-7">{data["crop_pred"]}</div>
+                    <div className="fs-7">{data["crop_pred"][0].toUpperCase() + data["crop_pred"].slice(1)}</div>
                     <p className="fertilizer-desc">
                       In accordance to your soil pH, Potassium, Nitrogen,
                       Phosphorus
@@ -84,28 +84,28 @@ export default function Dashboard({data}) {
               <div className="fs-1 text-center">
                 N
                 <p className="fertilizer-desc">Nitrogen</p>
-                {data["n"]}
+                {data["N"].toFixed(1)}
               </div>
             </div>
             <div className="col-md-1 phosphorus py-2 rounded m-3">
               <div className="fs-1 text-center">
                 P
                 <p className="fertilizer-desc">Phosphorus</p>
-                {data["p"]}
+                {data["P"].toFixed(1)}
               </div>
             </div>
             <div className="col-md-1 py-2 potassium rounded m-3">
               <div className="fs-1 text-center">
                 K
                 <p className="fertilizer-desc">Potassium</p>
-                {data["k"]}
+                {data["P"].toFixed(1)}
               </div>
             </div>
             <div className="col-md-1 ph-value py-2 rounded m-3">
               <div className="fs-1 text-center">
                 pH
                 <p className="fertilizer-desc">Value</p>
-                {data["ph"]}
+                {data["ph"].toFixed(1)}
               </div>
             </div>
             <div className="fertilizer-card col p-3 rounded m-3">

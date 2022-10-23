@@ -5,7 +5,7 @@ import constants
 
 def predict(l):
 
-    model = joblib.load("svm_model\svm_model.joblib")
+    model = joblib.load("svm_model/svm_model.joblib")
 
     N = constants.NITROGEN
     P = constants.PHOSPHORUS
@@ -27,4 +27,4 @@ def predict(l):
     return prediction[0]
 
 
-# print(predict([20.879744,82.002744,202.935536]))
+# print(predict([20.879744, 82.002744, 202.935536]))

@@ -2,6 +2,7 @@ from datetime import datetime
 import sqlite3
 from flask import Flask, request, make_response
 from svm_model import model as svm_model
+import sms
 
 app = Flask(__name__)
 
@@ -28,6 +29,26 @@ def monthToPredict(currentMonth):
             return values
 
 
+def sms_query(number):
+    curr_month = datetime.now().month
+    saved_month = f"select month from FARMER where phone_number = {number}"
+    cursor.execute(saved_month)
+
+    saved_month = cursor.fetchall()[0][0]
+
+    try:
+        if curr_month == saved_month:
+            sms.message_daily(monthToPredict(saved_month), number)
+        elif curr_month != saved_month:
+            sms.message_month(number)
+            cursor.execute(
+                f"update FARMER set month = {curr_month} where phone_number = {number}")
+            db.commit()
+        return {"message": "sms sent successfully"}
+    except Exception:
+        return {"message": "error in sms_query function"}
+
+
 @app.route("/")
 def hello_world():
     """8700877045,WATERMELON,22-10-2020"""
@@ -46,14 +67,18 @@ def predict():
     month = datetime.now().month
     month_prediction = svm_model.predict(monthToPredict(month))
     if number and len(number) == 10:
-        try:
-            cursor.execute(
-                f"INSERT INTO FARMER (phone_number, crop_name, month) values ({number}, {month_prediction} ,{month})"
-            )
-            db.commit()
-            return {"message": "data updated successfully"}
-        except Exception:
-            return make_response({"message": "parameters not fullfilled"}, 400)
+        send_sms = sms_query(int(number))
+        print(send_sms)
+        # try:
+        #     cursor.execute(
+        #         f"INSERT INTO FARMER (phone_number, crop_name, month) values ({number}, '{month_prediction}' ,{month})"
+        #     )
+        #     db.commit()
+
+        return {"message": "data updated successfully"}
+        # except Exception as e:
+        #     print(e)
+        #     return make_response({"message": "parameters not fullfilled"}, 400)
     else:
         return make_response({"message": "parameters not fullfilled"}, 400)
 

@@ -34,10 +34,10 @@ def sms_query(number):
     saved_month = f"select month from FARMER where phone_number = {number}"
     cursor.execute(saved_month)
 
-    saved_month = cursor.fetchall()[0][0]
+    saved_month = cursor.fetchall()[0]
 
     try:
-        if curr_month == saved_month:
+        if len(saved_month) and curr_month == saved_month[0]:
             sms.message_daily(monthToPredict(saved_month), number)
         elif curr_month != saved_month:
             sms.message_month(number)
@@ -67,18 +67,17 @@ def predict():
     month = datetime.now().month
     month_prediction = svm_model.predict(monthToPredict(month))
     if number and len(number) == 10:
+        try:
+            cursor.execute(
+                f"INSERT INTO FARMER (phone_number, crop_name, month) values ({number}, '{month_prediction}' ,{month})"
+            )
+            db.commit()
+
+            return {"message": "data updated successfully"}
+        except Exception as e:
+            pass
         send_sms = sms_query(int(number))
         print(send_sms)
-        # try:
-        #     cursor.execute(
-        #         f"INSERT INTO FARMER (phone_number, crop_name, month) values ({number}, '{month_prediction}' ,{month})"
-        #     )
-        #     db.commit()
-
-        return {"message": "data updated successfully"}
-        # except Exception as e:
-        #     print(e)
-        #     return make_response({"message": "parameters not fullfilled"}, 400)
     else:
         return make_response({"message": "parameters not fullfilled"}, 400)
 

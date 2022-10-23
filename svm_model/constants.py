@@ -2,12 +2,16 @@ farming_style = {'jute': 'classic style farming','pomegranate' : 'square method'
 
 MESSAGE_MONTH = "Hey Smart Kisan! Here are some tips for you: We recommend you to grow crop_recommendation the next season! Try to use the following organic fertilizers for better results: Vermicompost Fertilizer for all plants. Confirm that you bought it by typing a Yes, and we will send you daily updates of schedules on how to use it alongside your current fertilizers so as to mazimize the yield! We are working towards connecting you to the sellers directly, expect an update soon! Season is round the corner, for better yield, try farming_style farming. For weekly tips, reply with (organic tips). Organic Tip of the Day: random.choice(organic_tip) farming"
 
+AVERAGE_WEATHER = {"winter": {"chennai" : 24.5, "mumbai" : 24.5, "guwahati" : 17.5, "delhi" : 14.5}, "spring" : {"chennai" : 31, "mumbai" : 28.5, "guwahati" : 25.5, "delhi" : 29}, "summer" : {"chennai" : 33, "mumbai" : 32, "guwahati" : 31, "delhi" : 32}, "monsoon" : {"chennai" : 31, "mumbai" : 29, "guwahati" : 27, "delhi" : 29}}
+
+ORGANIC_TIP = ["Tip1", "Tip2","Tip2"]
+
 HUMIDITY = 71.48177921778648
 
 RAINFALL = 103.4636554157683
 
 NITROGEN = [ 90,  85,  60,  74,  78,  69,  94,  89,  68,  91,  93,  77,  88,
-        76,  67,  83,  98,  66,  97,  84,  73,  92,  95e,  99,  63,  62,
+        76,  67,  83,  98,  66,  97,  84,  73,  92,  95,  99,  63,  62,
         64,  82,  79,  65,  75,  71,  72,  70,  86,  61,  81,  80, 100,
         87,  96,  40,  23,  39,  22,  36,  32,  58,  59,  42,  28,  43,
         27,  50,  25,  31,  26,  54,  57,  49,  46,  38,  35,  52,  44,

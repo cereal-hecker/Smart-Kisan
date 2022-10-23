@@ -8,13 +8,12 @@ db = sqlite3.connect("sql.db", check_same_thread=False)
 cursor = db.cursor()
 
 cursor.execute(
-    "CREATE TABLE IF NOT EXISTS FARMER (phone_number INT PRIMARY KEY, crop_name TEXT, last_prediction DATE)"
+    "CREATE TABLE IF NOT EXISTS FARMER (phone_number INT PRIMARY KEY, crop_name TEXT, month INT)"
 )
 
 
-def monthToPredict():
+def monthToPredict(currentMonth):
     """returns the predictable month relative to current month"""
-    currentMonth = datetime.now().month
 
     months = {
         "[11, 12, 1, 2]": "spring",
@@ -45,13 +44,21 @@ def predict():
     number = request.args.get("number")
     if number and len(number) == 10:
         try:
-            cursor.execute(f"INSERT INTO FARMER (phone_number) values ({number})")
+            cursor.execute(
+                f"INSERT INTO FARMER (phone_number, month) values ({number}, {datetime.now().month})"
+            )
             db.commit()
             return {"message": "data updated successfully"}
         except Exception:
             return make_response({"message": "parameters not fullfilled"}, 400)
     else:
         return make_response({"message": "parameters not fullfilled"}, 400)
+
+
+@app.route("/numbers")
+def num():
+    cursor.execute("SELECT * from FARMER")
+    return cursor.fetchall()
 
 
 if __name__ == "__main__":
